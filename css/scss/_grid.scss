@@ -1,0 +1,129 @@
+@use "sass:math";
+
+// Variáveis do Grid
+$cols: 12;
+$gutter: 20px;
+$l_device: 1200px;
+$m_device: 760px;
+$s_device: 480px;
+
+// Box-Sizing
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+// Mixin de Media-Queries
+@mixin d($size) {
+  @if $size == desktop {
+    @media screen and (min-width: #{$l_device}) {
+      @content;
+    }
+  } @else if $size == tablet {
+    @media screen and (min-width: #{$m_device}) and (max-width: #{$l_device - 1}) {
+      @content;
+    }
+  } @else if $size == mobile {
+    @media screen and (max-width: #{$m_device - 1}) {
+      @content;
+    }
+  }
+}
+
+// Função Grid
+@function grid($col, $offset: false) {
+  $width: math.div($col, $cols) * 100 + '%';
+  $result: calc(#{$width} - #{$gutter});
+  @if $offset == offset {
+    $gutter: math.div($gutter, 2);
+    $result: calc(#{$width} + #{$gutter});
+  }
+  @return $result;
+}
+
+// Classes do Grid
+@for $i from 1 through $cols {
+  .grid-#{$i} {
+    width: grid($i);
+  }
+}
+
+// Mixin Estrutura do Grid
+@mixin grid-structure {
+  float: left;
+  min-height: 1px;
+  margin-left: math.div($gutter, 2);
+  margin-right: math.div($gutter, 2);
+
+  @include d(mobile) {
+    width: 100%;
+    float: none;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+[class^="grid-"] {
+  @include grid-structure;
+}
+
+// Classes do Offset
+@for $i from 1 through $cols {
+  .offset-#{$i} {
+    margin-left: grid($i, offset);
+    @extend %offset;
+  }
+}
+
+@include d(mobile) {
+  %offset {
+    margin-left: 0px;
+  }
+}
+
+//Mixin Clearfix
+@mixin clearfix {
+  &::after, &::before {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+//Mixin Container
+@mixin container {
+  max-width: $l_device;
+  margin: 0px auto;
+  position: relative;
+
+  @include d(table) {
+    max-width: $m_device;
+  }
+  @include d(mobile) {
+    max-width: $s_device;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  @include clearfix;
+}
+
+.container {
+  @include container;
+}
+
+@mixin row {
+  position: relative;
+  margin-left: math.div(-$gutter, 2);
+  margin-right: math.div(-$gutter, 2);
+
+  @include d(mobile) {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+  @include clearfix;
+}
+
+.row {
+  @include row;
+}

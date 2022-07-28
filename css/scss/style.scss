@@ -1,0 +1,15 @@
+// Gerais
+@import 'reset';
+@import 'grid';
+@import 'variaveis-mixins';
+@import 'geral';
+
+// Partes
+@import 'intro';
+@import 'menu';
+@import 'contato';
+@import 'rodape';
+
+:root {
+  font-size: 62.5%; // 10px = 1rem
+}

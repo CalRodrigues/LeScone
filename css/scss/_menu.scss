@@ -1,0 +1,53 @@
+.menu {
+  margin-block: 12rem;
+
+  @include d(mobile) {
+    margin-block: 6rem;
+  }
+}
+
+.menu-item {
+  margin-bottom: 6rem;
+
+  h2 {
+    @include tipo-2(24);
+    margin-bottom: 2.4rem;
+  }
+
+  li {
+    @include tipo-1(18);
+    line-height: 3.5rem;
+
+    span {
+      font-family: $fonte-2;
+      color: $bege-escuro;
+      display: inline-block;
+      width: 70px;
+      text-align: right;
+      margin-right: 1rem;
+      margin-left: -8rem;
+
+      @include d(mobile) {
+        margin-left: 0px;
+        width: auto;
+      }
+    }
+  }
+  
+  img {
+    border-radius: 50%;
+    border: 10px solid $bege-medio;
+    position: absolute;
+    right: 0px;
+    margin-top: 4rem;
+  
+    @include d(desktop) {
+      right: 12rem;
+    }
+    @include d(mobile) {
+      width: 12rem;
+      margin-top: 0px;
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,74 @@
+.contato {
+  margin-block: 12rem;
+
+  @include d(mobile) {
+    margin-block: 6rem;
+  }
+}
+
+.contato form {
+  label {
+    @include tipo-1(18);
+    display: block;
+  }
+
+  input[type="text"], textarea {
+    @include tipo-1(18);
+    color: $cinza;
+    width: 100%;
+    padding: 0 5px;
+    height: 4rem;
+    border: 2px solid $bege-escuro;
+    background: transparent;
+    margin-bottom: 1.8rem;
+
+    &:hover, &:focus {
+      outline: none;
+      border-color: $bege-medio;
+    }
+  }
+
+  textarea {
+    height: 12rem;
+  }
+}
+
+input.button {
+  background: transparent;
+  color: $bege-escuro;
+  cursor: pointer;
+  text-transform: uppercase;
+  display: block;
+  width: 200px;
+  padding-top: 5px;
+  @include tipo-1(18);
+  @include box-shadow(5px 5px 0 -2px $bege-medio, 5px 5px 0 0 $bege-escuro);
+  transition: .3s;
+
+  &:hover {
+    @include box-shadow(3px 3px 0 -2px $bege-medio, 3px 3px 0 0 $bege-escuro);
+  }
+}
+
+.contato-info {
+  display: inline-block;
+  color: $bege-escuro;
+  margin-top: 2rem;
+  margin-bottom: 4.8rem;
+
+  @include d(desktop) {
+    float: right;
+    text-align: right;
+    margin-top: -4.8rem;
+  }
+}
+
+.contato-mapa {
+  display: block;
+  clear: both;
+  @include box-shadow(0 0 0 10px $bege-medio);
+
+  img {
+    width: 100%;
+  }
+}

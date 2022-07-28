@@ -1,0 +1,42 @@
+body {
+  background: $bege-claro;
+  font-size: 1.6rem;
+  color: $cinza;
+  border: 10px solid $bege-medio;
+
+  @include d(mobile) {
+    border: none;
+  }
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+p {
+  @include tipo-1(18);
+}
+
+.titulo {
+  @include tipo-1(18);
+  text-transform: uppercase;
+
+  @include d(mobile) {
+    margin-bottom: 40px;
+  }
+
+  &::after {
+    content: '';
+    display: block;
+    width: 75%;
+    float: right;
+    height: 2px;
+    background: $cinza;
+    margin-top: 1.4rem;
+
+    @include d(table) {
+      width: 60%;
+    }
+  }
+}
